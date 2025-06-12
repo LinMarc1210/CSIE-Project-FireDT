@@ -52,7 +52,7 @@
           <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">聯絡我們</a>
         </li>
         <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="/login">登入</a>
+            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="/logout">登出</a>
         </li>
 
     </div>
@@ -150,43 +150,61 @@
         </div>
 
         <!-- 只有在後端有 video_url 時，才顯示 <video> 播放器 -->
-        {% if video_url %}
-        <div class="row justify-content-center">
-          <div class="col-lg-10">
-            <div class="ratio ratio-16x9">
-              <video controls>
-                <source src="{{ video_url }}" type="video/mp4" />
-                您的瀏覽器不支援 HTML5 影片播放。
-              </video>
-            </div>
-          </div>
-        </div>
-        {% else %}
-        <!-- 如果沒有影片，也可以顯示一段提示文字（可自行修改或移除） -->
-        <div class="row justify-content-center">
-          <div class="col-lg-10 text-center">
-            <p class="text-white-50">尚未有影片，請先上傳檔案並等待處理完成。</p>
-          </div>
-        </div>
-        {% endif %}
+        <!-- 在模板中顯示兩個影片 -->
+{% if video_urls %}
+<!-- 顯示兩個影片並排 -->
+<div class="video-container">
+    <div class="video-item">
+        <h2>影片 1</h2>
+        <video controls>
+            <source src="{{ video_urls['video1'] }}" type="video/mp4">
+            您的瀏覽器不支援 HTML5 影片。
+        </video>
+    </div>
+
+    <div class="video-item">
+        <h2>影片 2</h2>
+        <video controls>
+            <source src="{{ video_urls['video2'] }}" type="video/mp4">
+            您的瀏覽器不支援 HTML5 影片。
+        </video>
+    </div>
+</div>
+
+{% endif %}
       </div>
     </section>
         <section class="page-section" id="history">
-            <div class="container">
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">歷史記錄</h2>
-                <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-history"></i></div>
-                <div class="divider-custom-line"></div>
-                </div>
-                <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <p class="lead text-center">這裡會顯示你過去的上傳與處理記錄。</p>
-                    <!-- 你可以放表格、卡片等 -->
-                </div>
-                </div>
+    <div class="container">
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">歷史記錄</h2>
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-history"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+
+                <!-- member.html -->
+                {% if files %}
+                    <h2>歷史紀錄</h2>
+                    <ul>
+                        {% for file in files %}
+                            <li>
+                                <a href="{{ url_for('send_video_by_name', filename=file.file_name) }}">{{ file.file_name }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>目前沒有歷史紀錄。</p>
+                {% endif %}
+
+                                                
             </div>
-        </section>
+        </div>
+    </div>
+</section>
+
 
         <!-- Contact Section-->
         <section class="page-section" id="contact">

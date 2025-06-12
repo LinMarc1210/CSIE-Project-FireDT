@@ -52,17 +52,13 @@
     </div>
   </div>
 </nav>
-
-        <!-- Masthead-->
-        <header class="masthead bg-primary text-white text-center">
-            <div class="container d-flex align-items-center flex-column">
-                <!-- Masthead Avatar Image-->
-                <div class="masthead-avatar mb-5">
-                    <!-- 行內樣式 -->
-                    <i class="fas fa-fire fa-8x mb-5 animated-fire"></i>
-
-
-                </div>
+<!-- Masthead-->
+<header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Avatar Image-->
+        <div class="masthead-avatar mb-5">
+            <i class="fas fa-fire fa-8x mb-5 animated-fire"></i>
+        </div>
 
                 <!-- Masthead Heading-->
                 <h1 class="masthead-heading text-uppercase mb-0">Fire-Dt</h1>
@@ -210,25 +206,30 @@
         </div>
 
         <!-- 只有在後端有 video_url 時，才顯示 <video> 播放器 -->
-        {% if video_url %}
-        <div class="row justify-content-center">
-          <div class="col-lg-10">
-            <div class="ratio ratio-16x9">
-              <video controls>
-                <source src="{{ video_url }}" type="video/mp4" />
-                您的瀏覽器不支援 HTML5 影片播放。
-              </video>
-            </div>
-          </div>
-        </div>
-        {% else %}
-        <!-- 如果沒有影片，也可以顯示一段提示文字（可自行修改或移除） -->
-        <div class="row justify-content-center">
-          <div class="col-lg-10 text-center">
-            <p class="text-white-50">尚未有影片，請先上傳檔案並等待處理完成。</p>
-          </div>
-        </div>
-        {% endif %}
+<!-- 在模板中顯示兩個影片 -->
+{% if video_urls %}
+<!-- 顯示兩個影片並排 -->
+<div class="video-container">
+    <div class="video-item">
+        <h2>影片 1</h2>
+        <video controls>
+            <source src="{{ video_urls['video1'] }}" type="video/mp4">
+            您的瀏覽器不支援 HTML5 影片。
+        </video>
+    </div>
+
+    <div class="video-item">
+        <h2>影片 2</h2>
+        <video controls>
+            <source src="{{ video_urls['video2'] }}" type="video/mp4">
+            您的瀏覽器不支援 HTML5 影片。
+        </video>
+    </div>
+</div>
+
+{% endif %}
+
+
       </div>
     </section>
 
@@ -358,6 +359,7 @@
             const uploadBtn = document.getElementById('uploadBtn');
 
 
+            
             const serverAddress = "https://electric-quietly-antelope.ngrok-free.app";
 
             // 監聽檔案選擇，渲染清單

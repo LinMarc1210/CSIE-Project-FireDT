@@ -5,6 +5,7 @@ from flask_login import LoginManager
 
 app = Flask(__name__)
 app.config.from_object('demo_web.config.Config')
+
 db = SQLAlchemy(app)
 
 from demo_web.models import db, User 

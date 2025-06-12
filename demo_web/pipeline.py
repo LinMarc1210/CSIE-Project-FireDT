@@ -67,7 +67,7 @@ def run_pipeline(pic_input: str) -> dict:
             cmd = f'cd {fds_dir}&& fds room_simulation.fds && smokeview -runscript room_simulation'
         elif system == 'windows':
             fds_local = r"D:\CSIE_project\FDS\FDS6\bin\fds_local.bat"
-            fds_local = r"C:\Program Files\firemodels\FDS6\bin\fds_local.bat"
+            #fds_local = r"C:\Program Files\firemodels\FDS6\bin\fds_local.bat"
             fds_dir = os.path.dirname(fds_input)
             shutil.copy2(fds_local, os.path.join(fds_dir, 'fds'))
             cmd = f'cd {fds_dir}&& fds_local room_simulation.fds && smokeview -runscript room_simulation'
@@ -169,7 +169,7 @@ def test_fds_subprocess(pic_input: str) -> None:
 # only for testing
 if __name__ == "__main__":
     # # data_path = os.path.join(DEMO_DIR, '20250311_140524.bag')
-    data_path = os.path.join(DEMO_DIR, '20250311_141600.bag')
+    data_path = os.path.join(DEMO_DIR, '20250605_171517.bag')
     # # result = run_pipeline(pic_input=data_path)
     run_pipeline(data_path)
     # test_fds_subprocess(data_path)
