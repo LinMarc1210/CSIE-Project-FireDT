@@ -11188,3 +11188,41 @@ html {
     width: 48%; /* 使影片佔據一半的寬度，兩個影片並排顯示 */
     height: 360px; /* 設置固定高度 */
 }
+
+.record-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;  /* 增加項目間距 */
+    max-width: 1200px;  /* 設置最大寬度，讓內容區域更寬 */
+    margin: 0 auto;  /* 使容器居中 */
+}
+
+.fire-records, .smoke-records {
+    width: 48%;  /* 讓火災影片與煙霧影片區域各佔一半 */
+    padding: 20px;
+
+    border-radius: 8px;
+}
+
+ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+.record-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.record-card .file-name {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.record-card .file-size {
+    font-size: 12px;
+    color: #888;
+}

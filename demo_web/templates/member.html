@@ -32,11 +32,13 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ms-auto">
+        <!-- 這邊以下不能動-->
         <li class="nav-item mx-0 mx-lg-1">
             <span class="nav-link py-3 px-0 px-lg-3 rounded text-light">
                 您好，{{ current_user.username }}
             </span>
         </li>
+        <!-- 這邊以上不能動-->
 
         <li class="nav-item mx-0 mx-lg-1">
           <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">檔案上傳</a>
@@ -51,10 +53,11 @@
         <li class="nav-item mx-0 mx-lg-1">
           <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">聯絡我們</a>
         </li>
+        <!-- 這邊以下不能動-->
         <li class="nav-item mx-0 mx-lg-1">
             <a class="nav-link py-3 px-0 px-lg-3 rounded" href="/logout">登出</a>
         </li>
-
+        <!-- 這邊以上不能動-->
     </div>
   </div>
 </nav>
@@ -174,6 +177,7 @@
 {% endif %}
       </div>
     </section>
+    <!-- 這邊以下不能動-->
         <section class="page-section" id="history">
     <div class="container">
         <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">歷史記錄</h2>
@@ -185,26 +189,61 @@
         <div class="row justify-content-center">
             <div class="col-lg-10">
 
-                <!-- member.html -->
-                {% if files %}
-                    <h2>歷史紀錄</h2>
-                    <ul>
-                        {% for file in files %}
-                            <li>
-                                <a href="{{ url_for('send_video_by_name', filename=file.file_name) }}">{{ file.file_name }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                    <p>目前沒有歷史紀錄。</p>
-                {% endif %}
+{% if files %}
+    <div class="record-container">
+        <div class="fire-records">
+            <h3>火災影片</h3>
+            <ul id="fireList" class="list-group mt-4">
+                {% for file in files if 'fire' in file.file_name %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-file me-2"></i>
+                            <!-- 將檔案名稱包裝為超連結 -->
+                            <a href="{{ url_for('send_video_by_name', filename=file.file_name) }}">
+                                {{ file.file_name }}
+                            </a>
+                        </div>
+                        <span class="badge bg-secondary rounded-pill">
+                            {{ file.uploaded_at.strftime('%Y-%m-%d %H:%M:%S') }}
+                        </span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
 
-                                                
+        <div class="smoke-records">
+            <h3>煙霧影片</h3>
+            <ul id="smokeList" class="list-group mt-4">
+                {% for file in files if 'smoke' in file.file_name %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-file me-2"></i>
+                            <!-- 將檔案名稱包裝為超連結 -->
+                            <a href="{{ url_for('send_video_by_name', filename=file.file_name) }}">
+                                {{ file.file_name }}
+                            </a>
+                        </div>
+                        <span class="badge bg-secondary rounded-pill">
+                            {{ file.uploaded_at.strftime('%Y-%m-%d %H:%M:%S') }}
+                        </span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% else %}
+    <p>目前沒有歷史紀錄。</p>
+{% endif %}
+
+
+
+
+                               
             </div>
         </div>
     </div>
 </section>
-
+<!-- 這邊以上不能動-->
 
         <!-- Contact Section-->
         <section class="page-section" id="contact">
