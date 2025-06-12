@@ -6,6 +6,8 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Fire-DT 室內火災模擬系統</title>
+        <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
@@ -136,6 +138,34 @@
                     </button>
                 </div>
             </div>
+        </section>
+
+        <section class="page-section help bg-secondary" id="help">
+            <div class="container">
+                <h2 class="page-section-heading text-center text-uppercase text-white mb-0">使用說明</h2>
+                <div class="divider-custom divider-light mb-4">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fa-solid fa-check-to-slot"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <div class="help-item bg-light">
+                    <h3 class="text-center">檔案上傳</h3>
+                    <p class="text-center"><b>目前系統支援上傳 Intel RealSense D435 之 RGB-D 影像檔案(.bag) 上傳</b>，將影像檔案上傳至系統後，系統將自動進行處理</p>
+                </div>
+                <div class="help-item bg-light">
+                    <h3 class="text-center">處理過程</h3>
+                    <p class="text-center">系統將在過程中顯示進度條，提供使用者得知進度<br><b>HINT：隨著模擬秒數增加，最後的FDS模擬時程將會變長很多</b></p>
+                </div>
+                <div class="help-item bg-light">
+                    <h3 class="text-center">回傳結果</h3>
+                    <p class="text-center">系統將會回傳火源燃燒的溫度變化過程，以及煙霧擴散的過程給使用者</p>
+                </div>
+                <div class="help-item bg-light">
+                    <h3 class="text-center">歷史紀錄</h3>
+                    <p class="text-center">註冊帳號，儲存過去模擬的結果！</p>
+                </div>
+            </div>
+
         </section>
 
         <section class="page-section portfolio" id="portfolio">

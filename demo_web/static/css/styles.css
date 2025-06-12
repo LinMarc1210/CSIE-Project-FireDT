@@ -85,13 +85,10 @@
   --bs-danger-rgb: 198, 40, 40;
   --bs-light-rgb: 250, 250, 250;
   --bs-dark-rgb: 33, 33, 33;
+  --bs-white-rgb: 255, 255, 255;
 }
 
 /* Floating introduction cards */
-.page-section.introdiction::before {
-
-}
-
 .page-section.introduction {
   position: relative;
   overflow: hidden;
@@ -111,6 +108,31 @@
   z-index: 1;
 }
 
+/* 使用說明卡片的樣式 */
+.help-item {
+  background-color: #fff; /* 白色背景 */   
+  border-radius: 1rem;    /* 圓角邊界 */
+  padding: 2rem;          /* 內邊距 */
+  margin: 0 auto 1.5rem auto;  /* 卡片間距 */
+  width: 80%;
+  opacity: 1;             /* 初始隱藏 */
+  transform: translateY(30px); /* 初始位置略微向下偏移 */
+  transition: opacity 1s ease, transform 1s ease;
+  position: relative;
+  z-index: 2;
+}
+.help-item h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+.help-item p {
+  font-size: 1rem;
+  color: #555;
+}
+.help-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 .intro-card {
   border: none;
