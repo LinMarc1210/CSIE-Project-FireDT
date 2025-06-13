@@ -102,7 +102,8 @@ def upload_files():
         return redirect(url_for('error_page', msg=error_msg))
 
     try:
-        data_path = os.path.join(os.path.dirname(__file__), '20250605_171517.bag')
+        data_path = saved_files[0]
+        # data_path = os.path.join(os.path.dirname(__file__), '20250605_171517.bag')
         result = run_pipeline(pic_input=data_path)
 
         # 生成檔案名稱，包含使用者ID與上傳時間
