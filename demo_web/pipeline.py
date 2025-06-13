@@ -66,8 +66,8 @@ def run_pipeline(pic_input: str) -> dict:
             shutil.copy2(fds_local, os.path.join(fds_dir, 'fds_local.bat'))
             cmd = f'cd {fds_dir}&& fds room_simulation.fds && smokeview -runscript room_simulation'
         elif system == 'windows':
-            fds_local = r"D:\CSIE_project\FDS\FDS6\bin\fds_local.bat"
-            #fds_local = r"C:\Program Files\firemodels\FDS6\bin\fds_local.bat"
+            # fds_local = r"D:\CSIE_project\FDS\FDS6\bin\fds_local.bat"
+            fds_local = r"C:\Program Files\firemodels\FDS6\bin\fds_local.bat"
             fds_dir = os.path.dirname(fds_input)
             shutil.copy2(fds_local, os.path.join(fds_dir, 'fds'))
             cmd = f'cd {fds_dir}&& fds_local room_simulation.fds && smokeview -runscript room_simulation'

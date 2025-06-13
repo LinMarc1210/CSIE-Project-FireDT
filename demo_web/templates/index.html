@@ -38,15 +38,14 @@
           <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#introduction">系統簡介</a>
         </li>
         <li class="nav-item mx-0 mx-lg-1">
+          <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#help">使用說明</a>
+        </li>
+        <li class="nav-item mx-0 mx-lg-1">
           <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">檔案上傳</a>
         </li>
         <li class="nav-item mx-0 mx-lg-1">
           <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">回傳成果</a>
         </li>
-        <li class="nav-item mx-0 mx-lg-1">
-          <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">聯絡我們</a>
-        </li>
-
         <li class="nav-item mx-0 mx-lg-1">
             <a class="nav-link py-3 px-0 px-lg-3 rounded" href="login">登入</a>
         </li>
@@ -205,10 +204,15 @@
 
                   <!-- ❷ 上傳按鈕：加上 btn btn-primary btn-lg，使按鈕符合主題 -->
                   <button
+                    id="upload-button"
                     type="submit"
                     class="btn btn-primary btn-lg"
                   >
                     <i class="fas fa-cloud-upload-alt me-2"></i>開始上傳
+                  </button>
+                  <button id="loading-button" class="btn btn-primary" type="button" style="display: none;">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Loading...
                   </button>
                 </form>
 
@@ -222,7 +226,7 @@
 
  <!-- About Section (回傳成果區) -->
 
-    <section class="page-section bg-primary text-white mb-0" id="about">
+    <section class="page-section bg-secondary text-white mb-0" id="about">
       <div class="container">
         <!-- 區塊標題 -->
         <h2 class="page-section-heading text-center text-uppercase text-white">
@@ -240,16 +244,16 @@
 {% if video_urls %}
 <!-- 顯示兩個影片並排 -->
 <div class="video-container">
-    <div class="video-item">
-        <h2>影片 1</h2>
+    <div class="video-item d-flex j">
+        <h2 class="text-white text-center">室內溫度變化</h2>
         <video controls>
             <source src="{{ video_urls['video1'] }}" type="video/mp4">
             您的瀏覽器不支援 HTML5 影片。
         </video>
     </div>
 
-    <div class="video-item">
-        <h2>影片 2</h2>
+    <div class="video-item d-flex">
+        <h2 class="text-white text-center">室內煙霧流動</h2>
         <video controls>
             <source src="{{ video_urls['video2'] }}" type="video/mp4">
             您的瀏覽器不支援 HTML5 影片。
@@ -258,82 +262,10 @@
 </div>
 
 {% endif %}
-
-
       </div>
     </section>
 
-        <!-- Contact Section-->
-        <section class="page-section" id="contact">
-            <div class="container">
-                <!-- Contact Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">聯絡我們</h2>
-                <!-- Icon Divider-->
-                <div class="divider-custom">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                <!-- Contact Section Form-->
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 col-xl-7">
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- * * SB Forms Contact Form * *-->
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- This form is pre-integrated with SB Forms.-->
-                        <!-- To make this form functional, sign up at-->
-                        <!-- https://startbootstrap.com/solution/contact-forms-->
-                        <!-- to get an API token!-->
-                        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                            <!-- Name input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                <label for="name">Full name</label>
-                                <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                            </div>
-                            <!-- Email address input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
-                                <label for="email">Email address</label>
-                                <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                                <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-                            </div>
-                            <!-- Phone number input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
-                                <label for="phone">Phone number</label>
-                                <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
-                            </div>
-                            <!-- Message input-->
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
-                                <label for="message">Message</label>
-                                <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
-                            </div>
-                            <!-- Submit success message-->
-                            <!---->
-                            <!-- This is what your users will see when the form-->
-                            <!-- has successfully submitted-->
-                            <div class="d-none" id="submitSuccessMessage">
-                                <div class="text-center mb-3">
-                                    <div class="fw-bolder">Form submission successful!</div>
-                                    To activate this form, sign up at
-                                    <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                </div>
-                            </div>
-                            <!-- Submit error message-->
-                            <!---->
-                            <!-- This is what your users will see when there is-->
-                            <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                            <!-- Submit Button-->
-                            <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Send</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
         <!-- Footer-->
         <footer class="footer text-center">
             <div class="container">
@@ -350,17 +282,12 @@
                     <!-- Footer Social Icons-->
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <h4 class="text-uppercase mb-4">Around the Web</h4>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
                     </div>
                     <!-- Footer About Text-->
                     <div class="col-lg-4">
                         <h4 class="text-uppercase mb-4">About Fire-Dt</h4>
                         <p class="lead mb-0">
-                            This website is free to use, any usage should cite us @Fire-Dt</a>
-                            .
+                            
                         </p>
                     </div>
                 </div>
@@ -429,6 +356,22 @@
                 console.error(err);
                 alert('上傳失敗：' + err.message);
                 }
+            });
+            </script>
+        <script>
+            // 等待 DOM 完全加載
+            document.addEventListener('DOMContentLoaded', function () {
+                // 取得表單和按鈕元素
+                const form = document.querySelector('form');
+                const uploadButton = document.getElementById('upload-button');
+                const loadingButton = document.getElementById('loading-button');
+            
+                // 當表單提交時觸發
+                form.addEventListener('submit', function (event) {
+                // 隱藏上傳按鈕，顯示 Loading 按鈕
+                uploadButton.style.display = 'none';
+                loadingButton.style.display = 'inline-block';
+                });
             });
             </script>
     </body>

@@ -5,7 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Freelancer - Start Bootstrap Theme</title>
+        <title>Fire-DT 室內火災模擬系統</title>
+        <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
@@ -15,9 +17,9 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link
-    href="{{ url_for('static', filename='css/styles.css') }}"
-    rel="stylesheet"
-  />
+            href="{{ url_for('static', filename='css/styles.css') }}"
+            rel="stylesheet"
+        />
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -39,7 +41,12 @@
             </span>
         </li>
         <!-- 這邊以上不能動-->
-
+        <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#introduction">系統簡介</a>
+        </li>
+        <li class="nav-item mx-0 mx-lg-1">
+        <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#help">使用說明</a>
+        </li>
         <li class="nav-item mx-0 mx-lg-1">
           <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">檔案上傳</a>
         </li>
@@ -49,9 +56,6 @@
         </li>
         <li class="nav-item mx-0 mx-lg-1">
         <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#history">歷史記錄</a>
-        </li>
-        <li class="nav-item mx-0 mx-lg-1">
-          <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">聯絡我們</a>
         </li>
         <!-- 這邊以下不能動-->
         <li class="nav-item mx-0 mx-lg-1">
@@ -87,59 +91,156 @@
         </header>
         <!-- Portfolio Section-->
         <!-- 把這一段替換原來的 Portfolio -->
-<section class="page-section portfolio" id="portfolio">
-  <div class="container">
-    <!-- 區塊標題 -->
-    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
-      上傳檔案
-    </h2>
-    <!-- 分隔線 -->
-    <div class="divider-custom mb-5">
-      <div class="divider-custom-line"></div>
-      <div class="divider-custom-icon"><i class="fas fa-upload"></i></div>
-      <div class="divider-custom-line"></div>
-    </div>
 
-    <!-- 上傳表單（Bootstrap 5 版本） -->
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <form
-          action="{{ url_for('upload_files') }}"
-          method="post"
-          enctype="multipart/form-data"
-          class="text-center"
-        >
-          <!-- ❶ 檔案輸入框：加上 form-control 使其套用 Bootstrap 樣式 -->
-          <div class="mb-3">
-            <label for="fileInput" class="form-label">選擇檔案</label>
-            <input
-              class="form-control"
-              type="file"
-              id="fileInput"
-              name="files"
-              multiple
-            />
-            <div class="form-text">可同時選擇多個檔案上傳</div>
-          </div>
+        <!-- Project Introduction Section-->
+        <section class="page-section introduction bg-light" id="introduction">
+            <div class="container">
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">系統簡介</h2>
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-info-circle"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
 
-          <!-- ❷ 上傳按鈕：加上 btn btn-primary btn-lg，使按鈕符合主題 -->
-          <button
-            type="submit"
-            class="btn btn-primary btn-lg"
-          >
-            <i class="fas fa-cloud-upload-alt me-2"></i>開始上傳
-          </button>
-        </form>
+                <div id="introCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#introCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+                        <button type="button" data-bs-target="#introCarousel" data-bs-slide-to="1"></button>
+                        <button type="button" data-bs-target="#introCarousel" data-bs-slide-to="2"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="card intro-card mx-auto d-flex flex-column flex-md-row">
+                              <div class="card-body image-container d-flex justify-content-center align-items-center">
+                                <img src="{{ url_for('static', filename='assets/img/introduction/coor.png') }}" class="card-img-top" alt="展示1" />
+                              </div>
+                              <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
+                                  <h3 class="card-title">座標系轉換</h3>
+                                  <p class="card-text">將 Intel RealSense D435 所拍攝之點雲透過線性轉換，得到更精確的世界座標</p>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card intro-card mx-auto d-flex flex-column flex-md-row">
+                              <div class="card-body image-container d-flex justify-content-center align-items-center">
+                                <img src="{{ url_for('static', filename='assets/img/introduction/seg.png') }}" class="card-img-top" alt="展示2" />
+                              </div>
+                              <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
+                                  <h3 class="card-title">材質語義分割</h3>
+                                  <p class="card-text">利用深度學習模型結合條件隨機場演算法，清楚分割 23 種表面材質</p>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card intro-card mx-auto d-flex flex-column flex-md-row">
+                              <div class="card-body image-container d-flex justify-content-center align-items-center">
+                                <img src="{{ url_for('static', filename='assets/img/introduction/fds_soot.png') }}" class="card-img-top" alt="展示3" />
+                              </div>
+                              <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
+                                  <h3 class="card-title">FDS 室內火災模擬</h3>
+                                  <p class="card-text">自動生成火災動力學模擬軟體：FDS 的模擬用腳本，客製化還原室內火災發展過程。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#introCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#introCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </section>
 
-        <!-- 檔案預覽列表（可留著，如果要動態顯示檔案清單） -->
-        <ul id="fileList" class="list-group mt-4"></ul>
-      </div>
-    </div>
-  </div>
-</section>
+        <section class="page-section help bg-secondary" id="help">
+            <div class="container">
+                <h2 class="page-section-heading text-center text-uppercase text-white mb-0">使用說明</h2>
+                <div class="divider-custom divider-light mb-4">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fa-solid fa-check-to-slot"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <div class="help-item bg-light">
+                    <h3 class="text-center">檔案上傳</h3>
+                    <p class="text-center"><b>目前系統支援上傳 Intel RealSense D435 之 RGB-D 影像檔案(.bag) 上傳</b>，將影像檔案上傳至系統後，系統將自動進行處理</p>
+                </div>
+                <div class="help-item bg-light">
+                    <h3 class="text-center">處理過程</h3>
+                    <p class="text-center">系統將在過程中顯示進度條，提供使用者得知進度<br><b>HINT：隨著模擬秒數增加，最後的FDS模擬時程將會變長很多</b></p>
+                </div>
+                <div class="help-item bg-light">
+                    <h3 class="text-center">回傳結果</h3>
+                    <p class="text-center">系統將會回傳火源燃燒的溫度變化過程，以及煙霧擴散的過程給使用者</p>
+                </div>
+                <div class="help-item bg-light">
+                    <h3 class="text-center">歷史紀錄</h3>
+                    <p class="text-center">註冊帳號，儲存過去模擬的結果！</p>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="page-section portfolio" id="portfolio">
+        <div class="container">
+            <!-- 區塊標題 -->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
+            上傳檔案
+            </h2>
+            <!-- 分隔線 -->
+            <div class="divider-custom mb-5">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-upload"></i></div>
+            <div class="divider-custom-line"></div>
+            </div>
+
+            <!-- 上傳表單（Bootstrap 5 版本） -->
+            <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <form
+                action="{{ url_for('upload_files') }}"
+                method="post"
+                enctype="multipart/form-data"
+                class="text-center"
+                >
+                <!-- ❶ 檔案輸入框：加上 form-control 使其套用 Bootstrap 樣式 -->
+                <div class="mb-3">
+                    <label for="fileInput" class="form-label">選擇檔案</label>
+                    <input
+                    class="form-control"
+                    type="file"
+                    id="fileInput"
+                    name="files"
+                    multiple
+                    />
+                    <div class="form-text">可同時選擇多個檔案上傳</div>
+                </div>
+
+                <!-- ❷ 上傳按鈕：加上 btn btn-primary btn-lg，使按鈕符合主題 -->
+                <button
+                    id="upload-button"
+                    type="submit"
+                    class="btn btn-primary btn-lg"
+                  >
+                    <i class="fas fa-cloud-upload-alt me-2"></i>開始上傳
+                  </button>
+                  <button id="loading-button" class="btn btn-primary" type="button" style="display: none;">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+                  </button>
+                </form>
+
+                <!-- 檔案預覽列表（可留著，如果要動態顯示檔案清單） -->
+                <ul id="fileList" class="list-group mt-4"></ul>
+            </div>
+            </div>
+        </div>
+        </section>
 
   <!-- About Section (回傳成果區) -->
-    <section class="page-section bg-primary text-white mb-0" id="about">
+    <section class="page-section bg-secondary text-white mb-0" id="about">
       <div class="container">
         <!-- 區塊標題 -->
         <h2 class="page-section-heading text-center text-uppercase text-white">
@@ -158,15 +259,15 @@
 <!-- 顯示兩個影片並排 -->
 <div class="video-container">
     <div class="video-item">
-        <h2>影片 1</h2>
-        <video controls>
+        <h2 class="text-white text-center">室內溫度變化</h2>
+        <video class="text-white text-center" controls>
             <source src="{{ video_urls['video1'] }}" type="video/mp4">
             您的瀏覽器不支援 HTML5 影片。
         </video>
     </div>
 
     <div class="video-item">
-        <h2>影片 2</h2>
+        <h2 class="text-white text-center">室內煙霧流動</h2>
         <video controls>
             <source src="{{ video_urls['video2'] }}" type="video/mp4">
             您的瀏覽器不支援 HTML5 影片。
@@ -245,77 +346,6 @@
 </section>
 <!-- 這邊以上不能動-->
 
-        <!-- Contact Section-->
-        <section class="page-section" id="contact">
-            <div class="container">
-                <!-- Contact Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">聯絡我們</h2>
-                <!-- Icon Divider-->
-                <div class="divider-custom">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                <!-- Contact Section Form-->
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 col-xl-7">
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- * * SB Forms Contact Form * *-->
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- This form is pre-integrated with SB Forms.-->
-                        <!-- To make this form functional, sign up at-->
-                        <!-- https://startbootstrap.com/solution/contact-forms-->
-                        <!-- to get an API token!-->
-                        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                            <!-- Name input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                <label for="name">Full name</label>
-                                <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                            </div>
-                            <!-- Email address input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
-                                <label for="email">Email address</label>
-                                <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                                <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-                            </div>
-                            <!-- Phone number input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
-                                <label for="phone">Phone number</label>
-                                <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
-                            </div>
-                            <!-- Message input-->
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
-                                <label for="message">Message</label>
-                                <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
-                            </div>
-                            <!-- Submit success message-->
-                            <!---->
-                            <!-- This is what your users will see when the form-->
-                            <!-- has successfully submitted-->
-                            <div class="d-none" id="submitSuccessMessage">
-                                <div class="text-center mb-3">
-                                    <div class="fw-bolder">Form submission successful!</div>
-                                    To activate this form, sign up at
-                                    <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                </div>
-                            </div>
-                            <!-- Submit error message-->
-                            <!---->
-                            <!-- This is what your users will see when there is-->
-                            <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                            <!-- Submit Button-->
-                            <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Send</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
         <!-- Footer-->
         <footer class="footer text-center">
             <div class="container">
@@ -332,17 +362,12 @@
                     <!-- Footer Social Icons-->
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <h4 class="text-uppercase mb-4">Around the Web</h4>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
                     </div>
                     <!-- Footer About Text-->
                     <div class="col-lg-4">
                         <h4 class="text-uppercase mb-4">About Fire-Dt</h4>
                         <p class="lead mb-0">
-                            This website is free to use, any usage should cite us @Fire-Dt</a>
-                            .
+                           
                         </p>
                     </div>
                 </div>
@@ -604,5 +629,21 @@
                 }
             });
             </script>
+        <script>
+            // 等待 DOM 完全加載
+            document.addEventListener('DOMContentLoaded', function () {
+                // 取得表單和按鈕元素
+                const form = document.querySelector('form');
+                const uploadButton = document.getElementById('upload-button');
+                const loadingButton = document.getElementById('loading-button');
+            
+                // 當表單提交時觸發
+                form.addEventListener('submit', function (event) {
+                // 隱藏上傳按鈕，顯示 Loading 按鈕
+                uploadButton.style.display = 'none';
+                loadingButton.style.display = 'inline-block';
+                });
+            });
+        </script>
     </body>
 </html>

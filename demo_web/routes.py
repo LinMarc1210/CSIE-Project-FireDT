@@ -1,6 +1,6 @@
 from flask import (
     render_template, request, redirect, url_for,
-    send_file, abort, flash
+    send_file, abort, flash, session, jsonify
 )
 from datetime import datetime
 from demo_web import app, db
@@ -23,6 +23,12 @@ NEW_VIDEO_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'materi
 # def index():
 #     return render_template('index.html', video_url=None)
 
+# # 用來標記是否正在上傳
+# @app.before_request
+# def check_upload_status():
+#     # 阻止同一使用者在進行上傳過程中的重複上傳
+#     if session.get(f'uploading_{current_user.id}', False):
+#         return jsonify({'error': 'You are already uploading a file, please wait until the current upload is finished.'})
 
 @app.route('/', methods=['GET'])
 def index():

@@ -11248,3 +11248,34 @@ ul {
     font-size: 12px;
     color: #888;
 }
+
+/* 外層容器，設定為flexbox來並排顯示兩個影片 */
+.video-container {
+  display: flex;
+  justify-content: center;  /* 影片之間有間距 */
+  gap: 20px;  /* 調整影片之間的間距 */
+  flex-wrap: wrap;  /* 如果螢幕太小，影片會換行 */
+  margin-top: 20px;
+}
+/* 每個影片項目 */
+.video-item {
+  flex: 1 1 calc(50% - 20px);  /* 影片項目佔50%寬度，並扣掉間距 */
+  margin-bottom: 20px;  /* 每個影片下方的間距 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* 使每個影片居中對齊 */
+}
+/* 音影片控制條 */
+video {
+  width: 100%;  /* 讓影片寬度自適應 */
+  height: auto;  /* 保持影片的寬高比 */
+  border: 2px solid #ddd;  /* 影片邊框 */
+  border-radius: 8px;  /* 影片邊角圓角 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* 加上陰影效果 */
+}
+/* 影片標題的樣式 */
+.video-item h2 {
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
